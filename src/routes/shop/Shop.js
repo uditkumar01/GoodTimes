@@ -1,5 +1,5 @@
 import { Products, Sidebar } from "../../component";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDataContext } from "../../context/dataProvider/DataProvider";
 import { LoadMore } from "../../component/loadMore/LoadMore";
 import axios from "axios";
@@ -12,7 +12,7 @@ export function Shop() {
         dataDispatch,
     } = useDataContext();
     const [miniLoading, setMiniLoading] = useState(false);
-    // console.log(pageNo);
+
     async function fetchData() {
         const res = await axios.get(
             `https://mockData.uditkumar01.repl.co/products?page=${pageNo}`
@@ -35,8 +35,9 @@ export function Shop() {
                 },
             });
         }
+
         setMiniLoading(() => false);
-        // console.log("shop fetch data", res, pageNo);
+
     }
     const handleScroll = () => {
         const belowContentElement = document.getElementsByClassName(
@@ -54,11 +55,10 @@ export function Shop() {
             ) {
                 setMiniLoading(() => true);
                 fetchData();
-                // console.log("yo below content");
             }
         }
     };
-    // console.log("count", productData.length, pageNo, productData);
+
     return (
         <>
             <div className="body-content shop">
@@ -104,14 +104,14 @@ export function Shop() {
                         category={
                             search !== ""
                                 ? search
-                                      .slice(1)
-                                      .split("&")
-                                      .map((item) => {
-                                          const [query, value] = item.split(
-                                              "="
-                                          );
-                                          return { query, value };
-                                      })
+                                    .slice(1)
+                                    .split("&")
+                                    .map((item) => {
+                                        const [query, value] = item.split(
+                                            "="
+                                        );
+                                        return { query, value };
+                                    })
                                 : undefined
                         }
                     />

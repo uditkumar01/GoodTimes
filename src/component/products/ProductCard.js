@@ -5,6 +5,7 @@ import { useDataContext } from "../../context/dataProvider/DataProvider";
 import { NavLink } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import { useToastContext } from "../../context/toastProvider/ToastProvider";
+import { useAuthContext } from "../../context/authProvider/AuthProvider";
 
 export function ProductCard({ _id, name, rating, images, price }) {
     const [productImgState, productImgDispatch] = useReducer(
@@ -25,6 +26,7 @@ export function ProductCard({ _id, name, rating, images, price }) {
 
     const { toastListDispatch } = useToastContext();
     const [animationImg, setAnimationImg] = useState("0");
+    const { authState: { isLoggedIn } } = useAuthContext();
     useEffect(() => {
         setAnimationImg((animationImg) => {
             return animationImg === "0" ? "1" : "0";
@@ -32,7 +34,81 @@ export function ProductCard({ _id, name, rating, images, price }) {
     }, [productImgState]);
     const ProductInCart = cart.some((item) => item._id === _id);
     const ProductInWishlist = wishlist.some((item) => item === _id);
-    // console.log(cart,"cart");
+    const addToWishListHandler = () => {
+        if (ProductInWishlist) {
+            dataDispatch({
+                type: "WISHLIST",
+                data: {
+                    wishlist: wishlist.filter(
+                        (item) => item !== _id
+                    ),
+                },
+            });
+            toastListDispatch({
+                type: "ADD_TOAST",
+                data: {
+                    _id: uuid(),
+                    text: `${name} removed from wishlist successfully!!!`,
+                    type: "info",
+                },
+            });
+        } else {
+            dataDispatch({
+                type: "WISHLIST",
+                data: {
+                    wishlist: [...wishlist, _id],
+                },
+            });
+            toastListDispatch({
+                type: "ADD_TOAST",
+                data: {
+                    _id: uuid(),
+                    text: `${name} added to wishlist successfully!!!`,
+                    type: "success",
+                },
+            });
+        }
+    }
+
+    const addToCartHandler = () => {
+        if (ProductInCart) {
+            dataDispatch({
+                type: "CART",
+                data: {
+                    cart: cart.filter(
+                        (item) => item._id !== _id
+                    ),
+                },
+            });
+            toastListDispatch({
+                type: "ADD_TOAST",
+                data: {
+                    _id: uuid(),
+                    text: `${name} removed to cart successfully!!!`,
+                    type: "info",
+                },
+            });
+        } else {
+            dataDispatch({
+                type: "CART",
+                data: {
+                    cart: [
+                        ...cart,
+                        { _id, quantity: 1 },
+                    ],
+                },
+            });
+            toastListDispatch({
+                type: "ADD_TOAST",
+                data: {
+                    _id: uuid(),
+                    text: `${name} added to cart successfully!!!`,
+                    type: "success",
+                },
+            });
+        }
+    };
+
     return (
         <div
             className="product"
@@ -62,54 +138,15 @@ export function ProductCard({ _id, name, rating, images, price }) {
                 <div className="product-options">
                     <button className="add-to-cart">Buy Now</button>
                     <div className="icon-options">
-                        {/* <button className="product-watch">
-                            <VisibilityOutlinedIcon
-                                style={{ fontSize: "1.07rem" }}
-                            />
-                        </button> */}
                         <button
                             className="add-to-wishlist"
-                            onClick={() => {
-                                if (ProductInWishlist) {
-                                    dataDispatch({
-                                        type: "WISHLIST",
-                                        data: {
-                                            wishlist: wishlist.filter(
-                                                (item) => item !== _id
-                                            ),
-                                        },
-                                    });
-                                    toastListDispatch({
-                                        type: "ADD_TOAST",
-                                        data: {
-                                            _id: uuid(),
-                                            text: `${name} removed from wishlist successfully!!!`,
-                                            type: "info",
-                                        },
-                                    });
-                                } else {
-                                    dataDispatch({
-                                        type: "WISHLIST",
-                                        data: {
-                                            wishlist: [...wishlist, _id],
-                                        },
-                                    });
-                                    toastListDispatch({
-                                        type: "ADD_TOAST",
-                                        data: {
-                                            _id: uuid(),
-                                            text: `${name} added to wishlist successfully!!!`,
-                                            type: "success",
-                                        },
-                                    });
-                                }
-                            }}
+                            onClick={addToWishListHandler}
                             style={
                                 ProductInWishlist
                                     ? {
-                                            color: "var(--border-color)",
-                                            background: "var(--black-color-100)",
-                                        }
+                                        color: "var(--border-color)",
+                                        background: "var(--black-color-100)",
+                                    }
                                     : {}
                             }
                         >
@@ -117,59 +154,22 @@ export function ProductCard({ _id, name, rating, images, price }) {
                                 style={{ fontSize: "1.07rem" }}
                             />
                         </button>
-                        <button
+                        {isLoggedIn && <button
                             className="add-to-wishlist"
-                            onClick={() => {
-                                if (ProductInCart) {
-                                    dataDispatch({
-                                        type: "CART",
-                                        data: {
-                                            cart: cart.filter(
-                                                (item) => item._id !== _id
-                                            ),
-                                        },
-                                    });
-                                    toastListDispatch({
-                                        type: "ADD_TOAST",
-                                        data: {
-                                            _id: uuid(),
-                                            text: `${name} removed to cart successfully!!!`,
-                                            type: "info",
-                                        },
-                                    });
-                                } else {
-                                    dataDispatch({
-                                        type: "CART",
-                                        data: {
-                                            cart: [
-                                                ...cart,
-                                                { _id, quantity: 1 },
-                                            ],
-                                        },
-                                    });
-                                    toastListDispatch({
-                                        type: "ADD_TOAST",
-                                        data: {
-                                            _id: uuid(),
-                                            text: `${name} added to cart successfully!!!`,
-                                            type: "success",
-                                        },
-                                    });
-                                }
-                            }}
+                            onClick={addToCartHandler}
                             style={
                                 ProductInCart
                                     ? {
-                                          color: "var(--border-color)",
-                                          background: "var(--black-color-100)",
-                                      }
+                                        color: "var(--border-color)",
+                                        background: "var(--black-color-100)",
+                                    }
                                     : {}
                             }
                         >
                             <ShoppingCartOutlinedIcon
                                 style={{ fontSize: "1.07rem" }}
                             />
-                        </button>
+                        </button>}
                     </div>
                     <div className="rating">
                         {[...Array(Math.floor(rating))].map(() => (

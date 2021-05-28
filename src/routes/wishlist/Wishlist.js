@@ -1,4 +1,3 @@
-import CloseIcon from "@material-ui/icons/Close";
 import { NavLink } from "react-router-dom";
 import { ProductBanners, Products } from "../../component";
 import { useDataContext } from "../../context/dataProvider/DataProvider";
@@ -8,8 +7,6 @@ export function Wishlist() {
         dataDispatch,
         dataState: { wishlist, cart, productData },
     } = useDataContext();
-    // console.log(wishlist, "wishlist");
-    // console.log(cart, "cart");
     return (
         <div className="cart-container">
             <br />
@@ -90,6 +87,7 @@ export function Wishlist() {
                                     <WishlistItem key={id} {...productItem} />
                                 );
                             }
+                            return "";
                         })}
                     </table>
                 ) : (
@@ -118,6 +116,7 @@ export function Wishlist() {
                                     <WishlistItemSm key={id} {...productItem} />
                                 );
                             }
+                            return "";
                         })}
                     </div>
                 ) : (

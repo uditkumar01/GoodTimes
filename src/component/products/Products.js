@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDataContext } from "../../context/dataProvider/DataProvider";
 import { ProductCard } from "./ProductCard";
 
@@ -12,8 +11,6 @@ export function Products({
     const {
         dataState: {
             productData,
-            cart,
-            wishlist,
             currentPrice,
             filters,
             colorSet,
@@ -23,7 +20,6 @@ export function Products({
         dataState: { categoryData },
     } = useDataContext();
     
-    // console.log(cart,wishlist);
     return (
         <>
             {headingVisiblility ? (
@@ -57,6 +53,7 @@ export function Products({
                     ) {
                         return <ProductCard key={item.id} {...item} />;
                     }
+                    return "";
                 })}
             </div>
         </>

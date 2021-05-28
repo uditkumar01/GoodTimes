@@ -9,7 +9,7 @@ export function ToastItem({ _id, text, type }) {
         toastListState: { toastList },
         toastListDispatch,
     } = useToastContext();
-    // console.log(toastList,_id,width);
+
     const handleExitToast = () => {
         console.log("exiting", intervalId, text, width, toastList);
         handleClearInterval();
@@ -35,11 +35,8 @@ export function ToastItem({ _id, text, type }) {
         const id = setInterval(() => {
             setWidth((prevWidth) => {
                 if (prevWidth < 100) {
-                    // console.log(id, prevWidth);
                     return 0.5 + prevWidth;
                 }
-                // console.log(id);
-                // clearInterval(intervalId);
                 return prevWidth;
             });
         }, 20);

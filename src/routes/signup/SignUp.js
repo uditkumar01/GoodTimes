@@ -3,7 +3,7 @@ import { FormCard } from "../../component/formCard/FormCard";
 import { FormField } from "../../component/formField/FormField";
 import { v4 as uuid } from "uuid";
 import logoImg from "../../images/logo.png";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
     handlePasswordChars,
@@ -61,10 +61,8 @@ export function SignUp() {
         if (isLoggedIn) {
             navigate("/", { replace: true });
         }
-        // console.log(isLoggedIn);
+        
     }, [isLoggedIn]);
-    // console.log(name, email, password, confirmPassword);
-
     return (
         <FormCard>
             <form
@@ -74,7 +72,7 @@ export function SignUp() {
                 }}
             >
                 <div className="login-upper-part">
-                    <img src={logoImg} />
+                    <img src={logoImg} alt={'logo-img'}/>
 
                     <FormField
                         label={"Name"}
@@ -124,9 +122,9 @@ export function SignUp() {
                     />
                 </div>
                 <div className="login-lower-part">
-                    <NavLink to="/login">
-                        <a className="">Sign up</a>
-                    </NavLink>
+                    <Link to="/login">
+                        Sign up
+                    </Link>
                     <button type="submit" className="btn-block-custom br-round">
                         <ChevronRightIcon />
                     </button>

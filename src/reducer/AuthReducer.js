@@ -1,5 +1,5 @@
 export function authReducer(state, action) {
-    // console.log("LOGIN_STATE_UPDATE", state, action);
+    
     switch (action.type) {
         case "CREDINTIALS":
             return { ...state, ...action.data };

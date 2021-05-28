@@ -185,7 +185,7 @@ a:active {
     font-size: 7rem;
 }
 
-.table-sm.noproduct tr{
+.table-sm.noproduct tr {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1693,7 +1693,7 @@ input[type="range"]:focus::-moz-range-track {
     padding: 0;
     height: auto;
 } */
-.feature-colors .form-field{
+.feature-colors .form-field {
     margin: 1px 0;
     padding: 0;
     justify-content: flex-start;
@@ -1709,17 +1709,18 @@ input[type="range"]:focus::-moz-range-track {
     text-transform: capitalize;
 }
 
-.search-no-results{
+.search-no-results {
     margin: 2rem 0;
     padding: 1rem;
 }
 
-.search-no-results i{
+.search-no-results i {
     font-size: 80px;
     margin-bottom: 1rem;
 }
 
-.search-no-results i,.search-no-results p{
+.search-no-results i,
+.search-no-results p {
     color: var(--black-color-100);
 }
 
@@ -1810,7 +1811,7 @@ th {
     background: var(--nav-bg);
     width: 90%;
     padding: 1rem;
-    
+
     max-width: 500px;
     height: max-content;
 }
@@ -1853,16 +1854,16 @@ th {
     font-weight: 500;
 }
 
-.small-noitem{
+.small-noitem {
     display: flex;
     flex-direction: column;
 }
-.small-noitem i{
+.small-noitem i {
     font-size: 2.5rem;
     margin-block: 1rem;
     color: var(--nav-hover-line);
 }
-.small-noitem p{
+.small-noitem p {
     font-size: 1rem;
     color: var(--black-color-200);
 }
@@ -2002,6 +2003,9 @@ th {
     z-index: 5;
     margin: 0;
     padding: 0;
+}
+.alert-container .alert-header {
+    align-items: center;
 }
 .alert {
     position: relative;
@@ -2316,7 +2320,7 @@ th {
     text-align: left;
 }
 
-.badge{
+.badge {
     color: var(--cart-dropdown-color);
 }
 
@@ -3011,5 +3015,20 @@ th {
     .navbar.nav-sp .nav-brand {
         padding: 0.8rem 1.8rem;
         padding-right: 0.8rem;
+    }
+}
+
+/* alert media query */
+@media only screen and (max-width: 480px) {
+    .alert-container {
+        width: 93vw;
+        left: 0.7rem;
+    }
+    .alert-container .alert-header * {
+        font-size: 0.82rem;
+    }
+    .alert-container .alert {
+        max-width: 100%;
+        margin: 0;
     }
 }

@@ -1,4 +1,3 @@
-import CloseIcon from "@material-ui/icons/Close";
 import { NavLink } from "react-router-dom";
 import { ProductBanners, Products } from "../../component/index";
 import { useDataContext } from "../../context/dataProvider/DataProvider";
@@ -7,7 +6,7 @@ import { CartTotalCard } from "./CartTotalCard";
 export function Cart() {
     const {
         dataDispatch,
-        dataState: { productData, cart, wishlist },
+        dataState: { productData, cart },
     } = useDataContext();
     return (
         <div className="cart-container">
@@ -57,7 +56,7 @@ export function Cart() {
 
                         {cart.map((item) => {
                             const productItem = productData.find(
-                                (prod) => prod._id == item._id
+                                (prod) => prod._id === item._id
                             );
                             if (productItem) {
                                 return (
@@ -68,6 +67,7 @@ export function Cart() {
                                     />
                                 );
                             }
+                            return "";
                         })}
                     </table>
                 ) : (
@@ -89,7 +89,7 @@ export function Cart() {
                     <div className="cart-table table-sm">
                         {cart.map((item) => {
                             const productItem = productData.find(
-                                (prod) => prod._id == item._id
+                                (prod) => prod._id === item._id
                             );
                             if (productItem) {
                                 return (
@@ -100,6 +100,7 @@ export function Cart() {
                                     />
                                 );
                             }
+                            return "";
                         })}
                     </div>
                 ) : (

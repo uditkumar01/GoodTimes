@@ -22,7 +22,7 @@ function App() {
         const res = await axios.get(
             "https://mockData.uditkumar01.repl.co/products?page=0"
         );
-        // console.log(res.data.products);
+        console.log(res.data.products,"focus");
         dataDispatch({
             type: "PRODUCT",
             data: {
@@ -77,6 +77,41 @@ function App() {
         }
     }
 
+    async function getUserUsingToken() {
+        let token = localStorage.getItem('GOOD_TIMES_TOKEN');
+        console.log(token,"token here");
+        try {
+            const res = await axios.post(
+                `https://mockdata.uditkumar01.repl.co/user/login`,
+                {},
+                {
+                    headers: {
+                        Authorization: token
+                    },
+                }
+            );
+
+            console.log(res.data);
+
+            authDispatch({
+                type: "CURRENT_USER_UPDATE",
+                data: {
+                    current_user: {
+                        _id: res.data.user._id,
+                        name: res.data.user.name,
+                        email: res.data.user.email,
+                    },
+                },
+            });
+            authDispatch({
+                type: "LOGIN_STATUS_UPDATE",
+                data: { isLoggedIn: true },
+            });
+        } catch (err) {
+            console.log(err.message, current_user._id);
+        }
+    }
+
     useEffect(() => {
         if (categoryData !== []) {
             fetchCategoriesData();
@@ -85,48 +120,11 @@ function App() {
             fetchData();
         }
 
-        if (!isLoggedIn) {
-            if (localStorage.getItem("GOOD_TIMES_LOGIN") === "true") {
-                authDispatch({
-                    type: "LOGIN_STATUS_UPDATE",
-                    data: {
-                        isLoggedIn: true,
-                    },
-                });
-            }
-        }
-
-        let local_current_user = localStorage.getItem("GOOD_TIMES_USER");
-
-        if (local_current_user) {
-            local_current_user = JSON.parse(local_current_user);
-            if (Object.keys(local_current_user).length > 0) {
-                authDispatch({
-                    type: "CURRENT_USER_UPDATE",
-                    data: {
-                        current_user: local_current_user,
-                    },
-                });
-            }
+        if(!isLoggedIn || !Object.keys(current_user)<1){
+            getUserUsingToken();
         }
     }, []);
 
-    useEffect(() => {
-        if (isLoggedIn) {
-            localStorage.setItem("GOOD_TIMES_LOGIN", true);
-        } else {
-            localStorage.removeItem("GOOD_TIMES_LOGIN");
-        }
-    }, [isLoggedIn]);
-
-    useEffect(() => {
-        if (Object.keys(current_user).length > 0) {
-            localStorage.setItem(
-                "GOOD_TIMES_USER",
-                JSON.stringify(current_user)
-            );
-        }
-    }, [current_user]);
 
     // get cart and wishlist data from localStorage if exists
     useEffect(() => {

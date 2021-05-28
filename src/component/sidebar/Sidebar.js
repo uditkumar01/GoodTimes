@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { v4 as uuid } from "uuid";
 import { useDataContext } from "../../context/dataProvider/DataProvider";
-import { dataReducer } from "../../reducer/dataReducer";
 
 function Colors({ colorHex: { hex, active }, colorName }) {
     const {
@@ -85,7 +83,6 @@ export function Sidebar({ sidebarDisplay, setSidebarDisplay }) {
     const [othersCollapsible, setOthersCollapsible] = useState(true);
     const [sortBySelect, setSortBySelect] = useState(false);
 
-    // console.log(price);
     function priceSetter(event) {
         const val = event.target.value;
         const regexPrice = new RegExp(/\d+$/);
@@ -98,14 +95,6 @@ export function Sidebar({ sidebarDisplay, setSidebarDisplay }) {
             dataDispatch({ type: "PRICE", data: { currentPrice: val } });
         }
     }
-    // console.log(
-    //     minimumPrice,
-    //     maximumPrice,
-    //     currentPrice,
-    //     sortBy,
-    //     inStock,
-    //     freeDelivery
-    // );
     return (
         <div className="sidebar-container" animation={animation}>
             <div className="sidebar">
@@ -129,9 +118,9 @@ export function Sidebar({ sidebarDisplay, setSidebarDisplay }) {
                             </h3>
                             <button className="btn btn-md br-1">Filters</button>
                         </span>
-
+                        {/* for feature tags */}
                         <span className="feature-tags">
-                            {/* <span className="tag tag-sm custom br-3 info">
+                        {/* <span className="tag tag-sm custom br-3 info">
                                 <span className="close-btn">&times;</span>
                                 <small className="tag-text">hello</small>
                             </span> */}
@@ -195,7 +184,7 @@ export function Sidebar({ sidebarDisplay, setSidebarDisplay }) {
                             >
                                 {sortByData.map(({ id, text }) => {
                                     return (
-                                        <a
+                                        <button
                                             className="dropdown-item"
                                             href="#"
                                             key={id}
@@ -214,7 +203,7 @@ export function Sidebar({ sidebarDisplay, setSidebarDisplay }) {
                                             }}
                                         >
                                             {text}
-                                        </a>
+                                        </button>
                                     );
                                 })}
                             </div>

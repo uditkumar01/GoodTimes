@@ -11,9 +11,7 @@ export function FormField({
     const [fieldType, setFieldType] = useState(type.toLowerCase());
     useEffect(() => {
         setFieldType(type.toLowerCase());
-    }, []);
-    // console.log(error);
-    // if (error) console.log(error);
+    }, [type]);
     return (
         <div
             class={`form-field ${
@@ -64,11 +62,6 @@ export function FormField({
             <label for="input" class="form-label">
                 {label}
             </label>
-            {/* {error && Object.keys(error).length > 0 ? (
-                <p class={`form-help ${error.type}-bg`}>{error.msg}</p>
-            ) : (
-                ""
-            )} */}
             <hr />
             <hr />
         </div>

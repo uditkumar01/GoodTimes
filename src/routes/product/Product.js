@@ -115,7 +115,7 @@ export function Product() {
                         </div>
                     </div>
                     <div class="cable-config">
-                        <a href="#">How to apply for Cash On Delivery</a>
+                        <button>How to apply for Cash On Delivery</button>
                     </div>
                     <div class="single-product-price">
                         <span>₹{price}</span>

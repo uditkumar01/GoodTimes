@@ -20,16 +20,15 @@ export function Login() {
         authDispatch,
         loginUser,
     } = useAuthContext();
+
     const handleFormSubmission = async (event) => {
         event.preventDefault();
-        // console.log(event.target[0].value, "form");
-        // console.log(event.target[1].value, "form");
 
-        const { toast, type, user } = await await loginUser(
+        const { toast, type, user } = await loginUser(
             event.target[0].value,
             event.target[1].value
         );
-        // console.log({toast, type});
+
         toastListDispatch({
             type: "ADD_TOAST",
             data: {
@@ -57,8 +56,7 @@ export function Login() {
         if (isLoggedIn) {
             navigate("/", { replace: true });
         }
-        // console.log(isLoggedIn);
-        // console.log("user", user);
+
     }, [isLoggedIn]);
 
     return (
@@ -70,7 +68,7 @@ export function Login() {
                 }}
             >
                 <div className="login-upper-part">
-                    <img src={logoImg} />
+                    <img src={logoImg} alt={"logo-img"}/>
                     <FormField
                         label={"Email"}
                         textFilter={(checkText) => {
@@ -95,7 +93,7 @@ export function Login() {
                 </div>
                 <div className="login-lower-part">
                     <NavLink to="/signup">
-                        <a className="">Sign up</a>
+                        Sign up
                     </NavLink>
                     <button type="submit" className="btn-block-custom br-round">
                         <ChevronRightIcon />

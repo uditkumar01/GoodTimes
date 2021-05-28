@@ -40,20 +40,22 @@ export async function loginUser(email, password) {
                 },
             }
         );
-        return res.data.loginStatus
-            ? {
-                  toast: `${res.data.user.name} logged in successfully`,
-                  type: "success",
-                  user: {
-                      _id: res.data.user._id,
-                      name: res.data.user.name,
-                      email: res.data.user.email,
-                  },
-              }
-            : {
-                  toast: `${res.data.user.name} your password is incorrect`,
-                  type: "danger",
-              };
+        if(res.data.token){
+            localStorage.setItem('GOOD_TIMES_TOKEN',res.data.token);
+            return {
+                toast: `${res.data.user.name} logged in successfully`,
+                type: "success",
+                user: {
+                    _id: res.data.user._id,
+                    name: res.data.user.name,
+                    email: res.data.user.email,
+                },
+            };
+        }
+        return {
+                toast: `${res.data.user.name} your password is incorrect`,
+                type: "danger",
+            };
     } catch (err) {
         return {
             toast: `${email} is not registered`,

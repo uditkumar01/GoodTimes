@@ -34,14 +34,12 @@ function WishListDropDown() {
             </i>
             <div className="shopping-cart">
                 <div className="shopping-cart-header">
-                    {/* <i className="fa fa-shopping-cart cart-icon"></i> */}
                     <span className="lighter-text">Wishlist</span>
-                    {/* <span className="badge">3</span> */}
                     <div className="shopping-cart-total">
                         <span className="main-color-text"></span>
                     </div>
                 </div>
-
+                
                 <ul className="shopping-cart-items">
                     {wishlist.length > 0 ? (
                         wishlist.slice(0, 3).map((id) => {
@@ -57,7 +55,7 @@ function WishListDropDown() {
                                     stockStatus,
                                 } = productItem;
                                 return (
-                                    <li className="clearfix">
+                                    <li key={_id} className="clearfix">
                                         <img
                                             src={images[0]}
                                             alt="item1"
@@ -96,7 +94,7 @@ function WishListDropDown() {
                     )}
                 </ul>
 
-                <a className="button">Checkout</a>
+                <button className="button">Checkout</button>
             </div>
         </>
     );
@@ -187,14 +185,14 @@ function CartDropDown() {
                     )}
                 </ul>
 
-                <a href="#" className="button">
+                <button className="button">
                     Checkout
-                </a>
+                </button>
             </div>
         </>
     );
 }
-export function NavBar({ searchDisplay, setSearchDisplay }) {
+export function NavBar({ setSearchDisplay }) {
     const [navSwitch, setNavSwitch] = useState("none");
     const [navAnimation, setNavAnimation] = useState("0");
     const { toastListDispatch } = useToastContext();
@@ -203,19 +201,17 @@ export function NavBar({ searchDisplay, setSearchDisplay }) {
         authState: { isLoggedIn },
     } = useAuthContext();
     useEffect(() => {
-        // console.log(navSwitch, navAnimation);
         const interval = setTimeout(() => {
             setNavAnimation((navAnimation) =>
                 navSwitch === "none" ? "none" : navAnimation === "1" ? "0" : "1"
             );
         }, 0);
-        // console.log(navSwitch, navAnimation);
         return () => clearTimeout(interval);
     }, [navSwitch]);
     return (
         <nav className="navbar nav-iv light mid-animation">
             <div className="nav-brand">
-                <img src={logoImg} />
+                <img src={logoImg} alt={"logo-img"}/>
                 <p>
                     <strong>GOOD</strong>TIMES
                 </p>
@@ -245,7 +241,6 @@ export function NavBar({ searchDisplay, setSearchDisplay }) {
                         Home
                         <hr />
                     </NavLink>
-                    {/* <NavLink to="/"> */}
                     <li
                         className="link"
                         onClick={() => {
@@ -257,7 +252,6 @@ export function NavBar({ searchDisplay, setSearchDisplay }) {
                         About
                         <hr />
                     </li>
-                    {/* </NavLink> */}
                     <NavLink
                         to="/shop"
                         onClick={() => {
@@ -270,7 +264,6 @@ export function NavBar({ searchDisplay, setSearchDisplay }) {
                         Shop
                         <hr />
                     </NavLink>
-                    {/* <NavLink to="/contact"> */}
                     <li
                         className="link"
                         onClick={() => {
@@ -282,7 +275,6 @@ export function NavBar({ searchDisplay, setSearchDisplay }) {
                         Contact
                         <hr />
                     </li>
-                    {/* </NavLink> */}
                 </ul>
                 <ul
                     className="links"
@@ -336,7 +328,6 @@ export function NavBar({ searchDisplay, setSearchDisplay }) {
                         <li
                             className="link"
                             onClick={() => {
-                                // console.log("hi");
                                 authDispatch({
                                     type: "LOGIN_STATUS_UPDATE",
                                     data: {
@@ -351,6 +342,9 @@ export function NavBar({ searchDisplay, setSearchDisplay }) {
                                         type: "success",
                                     },
                                 });
+                                localStorage.removeItem("GOOD_TIMES_TOKEN");
+                                localStorage.removeItem("GT_CART");
+                                localStorage.removeItem("GT_WISHLIST");
                             }}
                         >
                             <svg
