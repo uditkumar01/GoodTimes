@@ -507,11 +507,9 @@ hr[class="search-hr"] {
     z-index: 0;
     max-width: 100%;
     width: 100%;
-    /* background: red; */
     text-align: center;
 }
 .carousel-social-icons {
-    /* background: turquoise; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -522,7 +520,7 @@ hr[class="search-hr"] {
     display: flex;
     flex-direction: column;
 }
-.social-icons a {
+.social-icons button {
     height: 28px;
     width: 28px;
     display: flex;
@@ -531,14 +529,14 @@ hr[class="search-hr"] {
     border-radius: 50%;
     margin: 0.1rem 0;
 }
-.social-icons a:hover {
+.social-icons button:hover {
     background: var(--nav-hover-bg);
 }
-.social-icons a i {
+.social-icons button i {
     font-size: 0.7rem;
     color: var(--black-color);
 }
-.social-icons a:last-child {
+.social-icons button:last-child {
     margin-bottom: 2rem;
 }
 .follow-text {
