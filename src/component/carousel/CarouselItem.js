@@ -1,13 +1,12 @@
-export function CarouselItem({ data: { imagePath } }) {
-    // console.log(imagePath,"path");
+export function CarouselItem({ data: { imagePath, title } }) {
     return (
         <div className="carousel-content">
             <div className="carousel-content-contain">
                 <div className="carousel-text">
                     <p className="carousel-category-name">
-                        <span></span>NEW COLLECTION 2019
+                        <span></span>NEW COLLECTION 2021
                     </p>
-                    <h1 className="carousel-title">Camouflage trunks bag</h1>
+                    <h1 className="carousel-title">{title}</h1>
                     <p className="carousel-summary-text">
                         Lorem Ipsum is simply dummy text of the printing and
                         typesetting industry printing and industry.

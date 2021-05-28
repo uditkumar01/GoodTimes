@@ -11,23 +11,28 @@ export function Carousel() {
     const dataCarousel = [
         {
             id:uuid(),
-            imagePath: img1
+            imagePath: img1,
+            title:"Rolez Yez Premium Watches"
         },
         {
             id:uuid(),
-            imagePath: img2
+            imagePath: img2,
+            title:"Titaq Wen New Releases"
         },
         {
             id:uuid(),
-            imagePath: img3
+            imagePath: img3,
+            title:"Rolez Yez Premium Watches"
         },
         {
             id:uuid(),
-            imagePath: img4
+            imagePath: img4,
+            title:"Titaq Wen New Releases"
         },
         {
             id:uuid(),
-            imagePath: img5
+            imagePath: img5,
+            title:"Rolez Yez Premium Watches"
         }
     ]
     return (
