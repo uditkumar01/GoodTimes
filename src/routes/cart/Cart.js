@@ -1,5 +1,7 @@
-import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Footer, ProductBanners, Products } from "../../component/index";
+import { useAuthContext } from "../../context/authProvider/AuthProvider";
 import { useDataContext } from "../../context/dataProvider/DataProvider";
 import { CartItem, CartItemSm } from "./CartItem";
 import { CartTotalCard } from "./CartTotalCard";
@@ -8,6 +10,14 @@ export function Cart() {
         dataDispatch,
         dataState: { productData, cart },
     } = useDataContext();
+    const navigate = useNavigate();
+    const { authState: { isLoggedIn }
+    } = useAuthContext();
+    useEffect(() => {
+        if (!isLoggedIn) {
+            navigate('/');
+        }
+    }, [isLoggedIn]);
     return (
         <>
             <div className="cart-container">
