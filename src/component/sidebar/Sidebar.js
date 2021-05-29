@@ -98,7 +98,6 @@ export function Sidebar({ sidebarDisplay, setSidebarDisplay }) {
     return (
         <div className="sidebar-container" animation={animation}>
             <div className="sidebar">
-                <br className="sidebar-nav-void" />
                 <div className="features">
                     <div className="feature-heading">
                         <span className="filter-content">
@@ -186,7 +185,6 @@ export function Sidebar({ sidebarDisplay, setSidebarDisplay }) {
                                     return (
                                         <button
                                             className="dropdown-item"
-                                            href="#"
                                             key={id}
                                             onClick={() => {
                                                 dataDispatch({

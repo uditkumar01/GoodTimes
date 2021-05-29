@@ -1452,10 +1452,24 @@ hr[class="search-hr"] {
     width: 100%;
 }
 .sidebar-container {
+    background: var(--sidebar-color);
     text-align: left;
-    height: 95vh;
+    max-height: 90vh;
+    min-height: 90vh;
     min-width: 340px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 3;
+    margin-top: 1.3rem;
+    scrollbar-color: transparent transparent;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
 }
+
+.feature-heading {
+    display: none;
+}
+
 .sidebar {
     height: 100%;
     width: 100%;
@@ -1475,6 +1489,7 @@ hr[class="search-hr"] {
 
 .sidebar .feature-item:first-child {
     padding: 0.5rem 1rem;
+    padding-top: 0.9rem;
 }
 
 .sidebar .feature-item .bidirectional-range {
@@ -2460,10 +2475,15 @@ th {
 @media only screen and (max-width: 993px) {
     .sidebar-container {
         position: fixed;
+        background: var(--sidebar-color);
         z-index: 10;
         left: -100%;
-        height: 100vh;
+        min-height: 100vh;
+        margin: 0;
         top: 0;
+    }
+    .feature-heading {
+        display: flex;
     }
     .sidebar-nav-void {
         display: flex;
