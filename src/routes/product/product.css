@@ -104,10 +104,10 @@ body {
 }
 
 /* Product Configuration */
-.product-configuration{
+.product-configuration {
     flex-grow: 0.65;
 }
-.product-color{
+.product-color {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -201,6 +201,7 @@ body {
     position: relative;
     margin: 10px 0;
     display: inline-block;
+    background-color: inherit;
 }
 .cable-config button:before {
     content: "?";
@@ -247,7 +248,7 @@ body {
 .rate {
     color: var(--black-color-100);
 }
-.rate:last-child{
+.rate:last-child {
     margin-right: 0.5rem;
 }
 
@@ -263,7 +264,7 @@ body {
     }
 }
 @media (max-width: 535px) {
-    .container{
+    .container {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         margin: 0;
         padding-inline: 0;
@@ -271,14 +272,14 @@ body {
     .left-column {
         min-height: 400px;
     }
-    .product-description span{
+    .product-description span {
         font-size: 0.6rem;
         margin-top: 1.4rem;
     }
-    .product-description h1{
+    .product-description h1 {
         font-size: 1.6rem;
     }
-    .product-description p{
+    .product-description p {
         font-size: 0.75rem;
     }
 }

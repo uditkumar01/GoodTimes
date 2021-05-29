@@ -20,7 +20,7 @@ function App() {
     const [loading, setLoading] = useState(true);
     async function fetchData() {
         const res = await axios.get(
-            "https://mockData.uditkumar01.repl.co/products?page=0"
+            `https://mockData.uditkumar01.repl.co/products?page=${pageNo}`
         );
         console.log(res.data.products,"focus");
         dataDispatch({

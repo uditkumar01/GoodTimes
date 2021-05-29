@@ -1611,6 +1611,9 @@ input[type="range"]:focus::-moz-range-track {
     font-size: 0.85rem;
     /* scale: 0.85; */
 }
+.cart-void{
+    margin-top: 0.6rem;
+}
 .shop-page-details {
     display: flex;
     justify-content: space-between;
