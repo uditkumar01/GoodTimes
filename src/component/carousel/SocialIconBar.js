@@ -12,9 +12,9 @@ export function SocialIconBar() {
                     <i class="fab fa-linkedin-in"></i>
                 </button>
             </span>
-            <button className="follow-text">
+            <p className="follow-text">
                 FOLLOW ME
-            </button>
+            </p>
         </div>
     );
 }

@@ -543,7 +543,7 @@ hr[class="search-hr"] {
 }
 .follow-text {
     font-weight: 700;
-    rotate: 180deg;
+    transform: rotate(180deg);
     width: max-content;
     text-orientation: mixed;
     writing-mode: vertical-rl;
