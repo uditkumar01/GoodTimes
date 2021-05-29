@@ -12,8 +12,8 @@ export function CarouselItem({ data: { imagePath, title } }) {
                         typesetting industry printing and industry.
                     </p>
                     <span className="carousel-price-details">
-                        <p className="old-price">Regular £75.00</p>
-                        <p className="new-price">Just £59.00</p>
+                        <p className="old-price">Regular ₹1175.00</p>
+                        <p className="new-price">Just ₹1159.00</p>
                     </span>
                     <button className="btn dark shop-now br-1">SHOP NOW</button>
                 </div>

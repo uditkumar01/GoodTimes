@@ -73,7 +73,8 @@ export function Footer() {
                 </ul>
             </div>
             <div className="lower-footer">
-                © 2021 GOODTIMES is Proudly Powered by GEON
+                © 2021 GOODTIMES is Proudly Powered by NEOG <br/>
+                Made for educationcal purposes
             </div>
         </div>
     );
