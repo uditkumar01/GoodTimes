@@ -65,7 +65,7 @@ export function Shop() {
             left:0,
             behavior:"smooth"
         });
-    },[]);
+    },[search]);
 
     return (
         <>
