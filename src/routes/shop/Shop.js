@@ -96,7 +96,7 @@ export function Shop() {
                             </NavLink>
                         </div>
                         <div className="on-right">
-                            <p>Showing 1-{productData.length} of 66 results</p>
+                            <p>Showing 1-{productData.length} of 198 results</p>
                         </div>
                     </div>
                     <Products
