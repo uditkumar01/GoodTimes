@@ -2,7 +2,7 @@ import "./product.css";
 import { ProductBanners, Products } from "../../component";
 import { useParams } from "react-router";
 import { useDataContext } from "../../context/dataProvider/DataProvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../../context/authProvider/AuthProvider";
 export function Product() {
@@ -18,6 +18,13 @@ export function Product() {
     const {
         authState: { isLoggedIn },
     } = useAuthContext();
+    useEffect(()=>{
+        window.scrollTo({
+            top:0,
+            left:0,
+            behavior:"smooth"
+        })
+    },[productId]);
     return (
         <>
             {productItem && <>

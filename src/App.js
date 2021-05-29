@@ -20,7 +20,7 @@ function App() {
     const [loading, setLoading] = useState(true);
     async function fetchData() {
         const res = await axios.get(
-            `https://mockData.uditkumar01.repl.co/products?page=${pageNo}`
+            "https://mockData.uditkumar01.repl.co/products?page=0"
         );
         console.log(res.data.products,"focus");
         dataDispatch({
@@ -168,7 +168,7 @@ function App() {
         console.log("updating");
         updateUserWishlistAndCartData();
     }, [wishlist, cart]);
-    // console.log(productData,"app");
+    
     return (
         <div className="App">
             <Toast />
