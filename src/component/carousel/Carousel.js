@@ -12,7 +12,7 @@ export function Carousel() {
         {
             id:uuid(),
             imagePath: img1,
-            title:"Rolez Yez Premium Watches"
+            title:"Rolez Premium Watches"
         },
         {
             id:uuid(),
@@ -22,7 +22,7 @@ export function Carousel() {
         {
             id:uuid(),
             imagePath: img3,
-            title:"Rolez Yez Premium Watches"
+            title:"Rolez Premium Watches"
         },
         {
             id:uuid(),
@@ -32,7 +32,7 @@ export function Carousel() {
         {
             id:uuid(),
             imagePath: img5,
-            title:"Rolez Yez Premium Watches"
+            title:"Rolez Premium Watches"
         }
     ]
     return (
