@@ -1,5 +1,5 @@
 import { Products, Sidebar } from "../../component";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDataContext } from "../../context/dataProvider/DataProvider";
 import { LoadMore } from "../../component/loadMore/LoadMore";
 import axios from "axios";
@@ -58,6 +58,14 @@ export function Shop() {
             }
         }
     };
+
+    useEffect(()=>{
+        window.scrollTo({
+            top:0,
+            left:0,
+            behavior:"smooth"
+        });
+    },[]);
 
     return (
         <>
