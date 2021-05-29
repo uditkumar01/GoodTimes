@@ -12,6 +12,7 @@ import {
 } from "../utils/Utils";
 import { useAuthContext } from "../../context/authProvider/AuthProvider";
 import { useToastContext } from "../../context/toastProvider/ToastProvider";
+import { Footer } from "../../component";
 export function SignUp() {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
@@ -51,7 +52,7 @@ export function SignUp() {
                 console.log("setting user");
                 authDispatch({
                     type: "CURRENT_USER_UPDATE",
-                    data: { current_user:user },
+                    data: { current_user: user },
                 });
             }
             navigate("/", { replace: true });
@@ -61,75 +62,78 @@ export function SignUp() {
         if (isLoggedIn) {
             navigate("/", { replace: true });
         }
-        
+
     }, [isLoggedIn]);
     return (
-        <FormCard>
-            <form
-                className="login-card"
-                onSubmit={async (event) => {
-                    handleFormSubmission(event);
-                }}
-            >
-                <div className="login-upper-part">
-                    <img src={logoImg} alt={'logo-img'}/>
+        <>
+            <FormCard>
+                <form
+                    className="login-card"
+                    onSubmit={async (event) => {
+                        handleFormSubmission(event);
+                    }}
+                >
+                    <div className="login-upper-part">
+                        <img src={logoImg} alt={'logo-img'} />
 
-                    <FormField
-                        label={"Name"}
-                        textFilter={(checkText) => {
-                            const re = new RegExp(/^[A-z\s]*$/gi);
-                            return re.test(checkText);
-                        }}
-                        setFieldText={setName}
-                        field={name}
-                        type={"text"}
-                    />
+                        <FormField
+                            label={"Name"}
+                            textFilter={(checkText) => {
+                                const re = new RegExp(/^[A-z\s]*$/gi);
+                                return re.test(checkText);
+                            }}
+                            setFieldText={setName}
+                            field={name}
+                            type={"text"}
+                        />
 
-                    <FormField
-                        label={"Email"}
-                        textFilter={(checkText) => {
-                            return true;
-                        }}
-                        setFieldText={setEmail}
-                        field={email}
-                        type={"text"}
-                        error={isEmail(email)}
-                    />
+                        <FormField
+                            label={"Email"}
+                            textFilter={(checkText) => {
+                                return true;
+                            }}
+                            setFieldText={setEmail}
+                            field={email}
+                            type={"text"}
+                            error={isEmail(email)}
+                        />
 
-                    <FormField
-                        label={"Password"}
-                        textFilter={(checkText) => {
-                            return true;
-                        }}
-                        setFieldText={setPassword}
-                        field={password}
-                        type={"password"}
-                        error={handlePasswordChars(password)}
-                    />
+                        <FormField
+                            label={"Password"}
+                            textFilter={(checkText) => {
+                                return true;
+                            }}
+                            setFieldText={setPassword}
+                            field={password}
+                            type={"password"}
+                            error={handlePasswordChars(password)}
+                        />
 
-                    <FormField
-                        label={"Confirm Password"}
-                        textFilter={(checkText) => {
-                            return true;
-                        }}
-                        setFieldText={setConfirmPassword}
-                        field={confirmPassword}
-                        error={handlePasswordCheckPasswordEquality(
-                            password,
-                            confirmPassword
-                        )}
-                        type={"password"}
-                    />
-                </div>
-                <div className="login-lower-part">
-                    <Link to="/login">
-                        Sign up
+                        <FormField
+                            label={"Confirm Password"}
+                            textFilter={(checkText) => {
+                                return true;
+                            }}
+                            setFieldText={setConfirmPassword}
+                            field={confirmPassword}
+                            error={handlePasswordCheckPasswordEquality(
+                                password,
+                                confirmPassword
+                            )}
+                            type={"password"}
+                        />
+                    </div>
+                    <div className="login-lower-part">
+                        <Link to="/login">
+                            Sign up
                     </Link>
-                    <button type="submit" className="btn-block-custom br-round">
-                        <ChevronRightIcon />
-                    </button>
-                </div>
-            </form>
-        </FormCard>
+                        <button type="submit" className="btn-block-custom br-round">
+                            <ChevronRightIcon />
+                        </button>
+                    </div>
+                </form>
+            </FormCard>
+            <Footer />
+        </>
     );
 }

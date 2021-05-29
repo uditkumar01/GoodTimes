@@ -15,7 +15,6 @@ export function MakeCluster({ children, searchDisplay, setSearchDisplay }) {
             </header>
             <br className="navbar-void" />
             {children}
-            {children.type.name.toLowerCase()!=="shop"?<Footer />:""}
         </>
     );
 }

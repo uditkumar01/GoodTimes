@@ -3,6 +3,7 @@ import {
     CategoryCard,
     Products,
     ProductBanners,
+    Footer,
 } from "../../component";
 export function Home() {
     return (
@@ -35,6 +36,7 @@ export function Home() {
                 />
                 <ProductBanners />
             </div>
+            <Footer />
         </>
     );
 }

@@ -10,6 +10,7 @@ import { useToastContext } from "../../context/toastProvider/ToastProvider";
 import logoImg from "../../images/logo.png";
 import { useState } from "react";
 import { handlePasswordChars, isEmail } from "../utils/Utils";
+import { Footer } from "../../component";
 export function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -46,7 +47,7 @@ export function Login() {
                 console.log("setting user");
                 authDispatch({
                     type: "CURRENT_USER_UPDATE",
-                    data: { current_user:user },
+                    data: { current_user: user },
                 });
             }
             navigate("/", { replace: true });
@@ -60,46 +61,49 @@ export function Login() {
     }, [isLoggedIn]);
 
     return (
-        <FormCard>
-            <form
-                className="login-card"
-                onSubmit={async (event) => {
-                    handleFormSubmission(event);
-                }}
-            >
-                <div className="login-upper-part">
-                    <img src={logoImg} alt={"logo-img"}/>
-                    <FormField
-                        label={"Email"}
-                        textFilter={(checkText) => {
-                            return true;
-                        }}
-                        setFieldText={setEmail}
-                        field={email}
-                        type={"text"}
-                        error={isEmail(email)}
-                    />
+        <>
+            <FormCard>
+                <form
+                    className="login-card"
+                    onSubmit={async (event) => {
+                        handleFormSubmission(event);
+                    }}
+                >
+                    <div className="login-upper-part">
+                        <img src={logoImg} alt={"logo-img"} />
+                        <FormField
+                            label={"Email"}
+                            textFilter={(checkText) => {
+                                return true;
+                            }}
+                            setFieldText={setEmail}
+                            field={email}
+                            type={"text"}
+                            error={isEmail(email)}
+                        />
 
-                    <FormField
-                        label={"Password"}
-                        textFilter={(checkText) => {
-                            return true;
-                        }}
-                        setFieldText={setPassword}
-                        field={password}
-                        type={"password"}
-                        error={handlePasswordChars(password)}
-                    />
-                </div>
-                <div className="login-lower-part">
-                    <NavLink to="/signup">
-                        Sign up
+                        <FormField
+                            label={"Password"}
+                            textFilter={(checkText) => {
+                                return true;
+                            }}
+                            setFieldText={setPassword}
+                            field={password}
+                            type={"password"}
+                            error={handlePasswordChars(password)}
+                        />
+                    </div>
+                    <div className="login-lower-part">
+                        <NavLink to="/signup">
+                            Sign up
                     </NavLink>
-                    <button type="submit" className="btn-block-custom br-round">
-                        <ChevronRightIcon />
-                    </button>
-                </div>
-            </form>
-        </FormCard>
+                        <button type="submit" className="btn-block-custom br-round">
+                            <ChevronRightIcon />
+                        </button>
+                    </div>
+                </form>
+            </FormCard>
+            <Footer />
+        </>
     );
 }

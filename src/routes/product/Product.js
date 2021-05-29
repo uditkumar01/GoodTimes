@@ -1,5 +1,5 @@
 import "./product.css";
-import { ProductBanners, Products } from "../../component";
+import { Footer, ProductBanners, Products } from "../../component";
 import { useParams } from "react-router";
 import { useDataContext } from "../../context/dataProvider/DataProvider";
 import { useEffect, useState } from "react";
@@ -171,7 +171,9 @@ export function Product() {
                     noOfProducts={4}
                 />
                 <ProductBanners />
-            </>}
+                <Footer />
+            </>
+            }
         </>
     );
 }
